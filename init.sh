@@ -1,6 +1,6 @@
 # this script should be made public (e.g. in a gist), storing here for source control.
 
-set -euo pipefail
+set -euox pipefail
 
 # install Xcode Command Line Tools
 # https://github.com/timsutton/osx-vm-templates/blob/ce8df8a7468faa7c5312444ece1b977c1b2f77a4/scripts/xcode-cli-tools.sh
@@ -24,15 +24,15 @@ read
 echo "<cracks knuckles> ok then"
 
 
-if [[ ! -f $HOME/.ssh/id_rsa ]] && [[ ! -f $HOME/.ssh/id_dsa ]]; then
-  echo first of all, lets create an ssh key
+if [[ ! -f $HOME/.ssh/id_rsa ]]; then
+  echo 'first of all, lets create an ssh key'
   ssh-keygen
 else
-  echo looks like you already have an ssh key, cool cool. Cool cool cool.
+  echo 'looks like you already have an ssh key. Let's carry on'
 fi
 
 echo checking github...
-echo "(you should agree to continue connecting if asked)"
+echo '(you should agree to continue connecting if asked)'
 
 test_gh() {
   set +e
