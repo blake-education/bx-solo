@@ -1,6 +1,6 @@
 # this script should be made public (e.g. in a gist), storing here for source control.
 
-set -euox pipefail
+set -euo pipefail
 
 # install Xcode Command Line Tools
 # https://github.com/timsutton/osx-vm-templates/blob/ce8df8a7468faa7c5312444ece1b977c1b2f77a4/scripts/xcode-cli-tools.sh
