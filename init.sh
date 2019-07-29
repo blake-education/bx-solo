@@ -10,3 +10,4 @@ softwareupdate -i "$PROD" --verbose;
 
 
 mkdir -p ~/Blake/ && git clone https://github.com/blake-education/bx.git ~/Blake/bx
+
