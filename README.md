@@ -11,4 +11,4 @@ Initially it will want to setup access to GitHub with ssh keys, so please follow
 
 Copy and paste the command below into a terminal to get going:
 
-`bash <(curl https://raw.githubusercontent.com/blake-education/bx-solo/master/init.sh)
+`bash <(curl https://raw.githubusercontent.com/blake-education/bx-solo/master/init.sh)`
