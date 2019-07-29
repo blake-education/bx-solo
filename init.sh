@@ -28,7 +28,7 @@ if [[ ! -f $HOME/.ssh/id_rsa ]]; then
   echo 'first of all, lets create an ssh key'
   ssh-keygen
 else
-  echo 'looks like you already have an ssh key. Let's carry on'
+  echo 'looks like you already have an ssh key. Lets carry on'
 fi
 
 echo checking github...
