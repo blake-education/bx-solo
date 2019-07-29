@@ -2,9 +2,9 @@
 
 set -euo pipefail
 
-if ! [[ xcode-select -p 1>/dev/null;echo $? ]]; then
-  # install Xcode Command Line Tools
-  # https://github.com/timsutton/osx-vm-templates/blob/ce8df8a7468faa7c5312444ece1b977c1b2f77a4/scripts/xcode-cli-tools.sh
+# install Xcode Command Line Tools
+# https://github.com/timsutton/osx-vm-templates/blob/ce8df8a7468faa7c5312444ece1b977c1b2f77a4/scripts/xcode-cli-tools.sh
+if [[ $(xcode-select -p 1>/dev/null;echo $?) != 0 ]]; then
   touch /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress;
   PROD=$(softwareupdate -l |
     grep "\*.*Command Line" |
