@@ -53,11 +53,14 @@ temporarily add the key to your github account.
 Don't forget to remove it before they add it to their account
 when they arrive.)
 *****************
-Go add this key to github
+Add this key to github
 DOC
   cat ~/.ssh/id_rsa.pub
-
-  echo "hit enter when you're ready"
+  echo "hit enter to open GitHub ssh key page. Login if necessary"
+  echo "return to this window when done..."
+  read
+  open "https://github.com/settings/ssh/new"
+  echo "After you've added you ssh key, hit enter to continue"
   read
 
 cat <<EODOC
@@ -65,7 +68,7 @@ Let's see if we can github now...
 EODOC
 
   if ! test_gh; then
-    echo hm, github still failing
+    echo "hm, github still failing"
     exit 1
   fi
 fi
@@ -74,7 +77,8 @@ echo ok, github is a go
 
 cat <<EODOC
 ** Protip *******
-Don't forget to add the new starter's github user to our team.
+Make sure your account has been added to blake-education's GitHub team.
+Contact devops@blake.com.au if you are having issues
 *****************
 EODOC
 
