@@ -3,15 +3,27 @@
 set -euo pipefail
 
 # install Xcode Command Line Tools
-# https://github.com/timsutton/osx-vm-templates/blob/ce8df8a7468faa7c5312444ece1b977c1b2f77a4/scripts/xcode-cli-tools.sh
-if [[ $(xcode-select -p 1>/dev/null;echo $?) != 0 ]]; then
-  touch /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress;
-  PROD=$(softwareupdate -l |
+install_xcode() {
+  if [[ $(xcode-select -p 1>/dev/null;echo $?) != 0 ]]; then
+    xcode-select --install
+    echo "Installing xcode command line tools. If prompted, click install in the pop up window"
+    echo "Press enter once installation is complete"
+    read
+  else
+    echo "Looking for xcode command line tools updates"
+    touch /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress;
+    PROD=$(softwareupdate -l |
     grep "\*.*Command Line" |
     head -n 1 | awk -F"*" '{print $2}' |
     sed -e 's/^ *//' |
     tr -d '\n')
-  softwareupdate -i "$PROD" --verbose;
+    softwareupdate -i "$PROD" --verbose;
+  fi
+  return $(xcode-select -p 1>/dev/null;echo $?)
+}
+
+if ! install_xcode; then
+  echo "xcode cli installation failed, please manually install before continuing"
 fi
 
 cat <<EODOC
