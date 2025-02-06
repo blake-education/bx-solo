@@ -36,7 +36,7 @@ read
 echo "<cracks knuckles> ok then"
 
 
-if [[ ! -f $HOME/.ssh/id_rsa ]]; then
+if [[ ! -f $HOME/.ssh/id_ed25519 ]]; then
   echo 'first of all, lets create an ssh key'
   ssh-keygen
 else
@@ -67,7 +67,7 @@ when they arrive.)
 *****************
 Add this key to github
 DOC
-  cat ~/.ssh/id_rsa.pub
+  cat ~/.ssh/id_ed25519.pub
   echo "hit enter to open GitHub ssh key page. Login if necessary"
   echo "return to this window when done..."
   read
