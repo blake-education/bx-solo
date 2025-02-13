@@ -1,4 +1,4 @@
-# this script should be made public (e.g. in a gist), storing here for source control.
+#!/usr/bin/env bash
 
 set -euo pipefail
 
