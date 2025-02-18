@@ -3,18 +3,21 @@
 set -euo pipefail
 
 kandji_installed() {
-  which kandji 1>/dev/null 2>&1
+  which kandji 1>/dev/null 2>&1 \
+    || echo "Kandji cli tool isn't installed. Device may not be enrolled."
 }
 
 xcode_tools_installed() {
-  pkgutil --pkg-info=com.apple.pkg.CLTools_Executables 1>/dev/null 2>&1
+  pkgutil --pkg-info=com.apple.pkg.CLTools_Executables 1>/dev/null 2>&1 \
+    || echo "Xcode tools is not installed. Run xcode-select --install."
 }
 
 brew_installed() {
-  brew --version 1>/dev/null 2>&1
+  brew --version 1>/dev/null 2>&1 \
+    || echo "Brew is not installed. Kandji Liftoff may not have run yet."
 }
 
-if kandji && xcode_tools_installed && brew_installed; then
+if kandji_installed && xcode_tools_installed && brew_installed; then
 
   echo "Installing Github CLI Tools."
   brew install gh
@@ -32,15 +35,7 @@ if kandji && xcode_tools_installed && brew_installed; then
 
 else
 
-  if ! kandji_installed; then
-    echo "Kandji cli tool isn't installed. Device may not be enrolled. Contact #devops in slack"
-
-  elif ! xcode_tools_installed; then
-    echo "Xcode tools is not installed. Run xcode-select --install."
-
-  elif ! brew_installed; then
-    echo "Brew is not installed. Kandji Liftoff may not have run yet. Contact #devops in slack"
-
-  fi
+  echo "Contact #devops and let us know where you're having issues."
+  exit 1
 
 fi
