@@ -2,6 +2,10 @@
 
 set -euo pipefail
 
+kandji_installed() {
+  which kandji 1>/dev/null 2>&1
+}
+
 xcode_tools_installed() {
   pkgutil --pkg-info=com.apple.pkg.CLTools_Executables 1>/dev/null 2>&1
 }
@@ -10,7 +14,7 @@ brew_installed() {
   brew --version 1>/dev/null 2>&1
 }
 
-if xcode_tools_installed && brew_installed; then
+if kandji && xcode_tools_installed && brew_installed; then
 
   echo "Installing Github CLI Tools."
   brew install gh
@@ -28,7 +32,10 @@ if xcode_tools_installed && brew_installed; then
 
 else
 
-  if ! xcode_tools_installed; then
+  if ! kandji_installed; then
+    echo "Kandji cli tool isn't installed. Device may not be enrolled. Contact #devops in slack"
+
+  elif ! xcode_tools_installed; then
     echo "Xcode tools is not installed. Run xcode-select --install."
 
   elif ! brew_installed; then
