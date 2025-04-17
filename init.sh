@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+!/usr/bin/env bash
 
 set -euo pipefail
 
@@ -27,7 +27,7 @@ if kandji_installed && xcode_tools_installed && brew_installed; then
 
   if [[ ! -d ~/Blake/bx ]]; then
     echo "Cloning bx repo."
-    git clone git@github.com:blake-education/bx.git ~/Blake/bx
+    gh repo clone blake-education/bx ~/Blake/bx
   fi
 
   echo "Starting mac-bootstrap."
