@@ -17,13 +17,27 @@ brew_installed() {
     || echo "Brew is not installed. Kandji Liftoff may not have run yet."
 }
 
+gh_installed(){
+  gh --version 1>/dev/null 2>&1 \
+    || echo "Github CLI Tools is not installed"
+}
+
+gh_authenticated() {
+  gh auth status 1>/dev/null 2>&1 \
+    || echo "Not authenticated with Github CLI Tools"
+}
+
 if kandji_installed && xcode_tools_installed && brew_installed; then
 
-  echo "Installing Github CLI Tools."
-  brew install gh
+  if ! gh_installed; then
+    echo "Installing Github CLI Tools."
+    brew install gh
+  fi
 
-  echo "Setting you up on github."
-  gh auth login -p ssh -h github.com --insecure-storage -w
+  if ! gh_authenticated; then
+    echo "Setting you up on github."
+    gh auth login -p ssh -h github.com --insecure-storage -w
+  fi
 
   if [[ ! -d ~/Blake/bx ]]; then
     echo "Cloning bx repo."
