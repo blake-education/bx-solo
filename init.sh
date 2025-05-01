@@ -65,6 +65,11 @@ if kandji_installed && xcode_tools_installed && brew_installed; then
     gh repo clone blake-education/bx ~/Blake/bx
   fi
 
+  if [[ ! -f ~/.bx-solo-run ]]; then
+    notify "Creating ~/.bx-solo-run file"
+    echo $(date "+%Y-%m-%d %H:%M:%S") >> ~/.bx-solo-run
+  fi
+
   notify "Starting mac-bootstrap."
   exec ~/Blake/bx/bin/bx mac-bootstrap
 
