@@ -65,9 +65,9 @@ if kandji_installed && xcode_tools_installed && brew_installed; then
     gh repo clone blake-education/bx ~/Blake/bx
   fi
 
-  if [[ ! -f ~/.bx-solo-run ]]; then
-    notify "Creating ~/.bx-solo-run file"
-    echo $(date "+%Y-%m-%d %H:%M:%S") >> ~/.bx-solo-run
+  if [[ ! -f ~/.bx-updater-state ]]; then
+    notify "Creating ~/.bx-updater-state file"
+    echo "$(date "+%Y-%m-%dT%H-%M-%S")_bx-solo-run,true" >> ~/.bx-updater-state
   fi
 
   notify "Starting mac-bootstrap."
