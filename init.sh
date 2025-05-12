@@ -60,6 +60,10 @@ if kandji_installed && xcode_tools_installed && brew_installed; then
     gh auth login -p ssh -h github.com --insecure-storage -w
   fi
 
+  open https://github.com/settings/keys
+  notify "Please confirm your SSH Key has been Configured for SSO for the blake-education organization"
+  read -p "Press enter to continue"
+
   if [[ ! -d ~/Blake/bx ]]; then
     notify "Cloning bx repo."
     gh repo clone blake-education/bx ~/Blake/bx
